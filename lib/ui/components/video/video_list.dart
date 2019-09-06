@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:sportega/ui/components/video_item.dart';
+import 'package:sportega/ui/components/video/video_item.dart';
 import 'package:sportega/ui/holders/video.dart';
 
 class VideoList extends StatefulWidget {

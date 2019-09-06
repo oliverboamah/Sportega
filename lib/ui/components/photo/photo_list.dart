@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:sportega/ui/components/photo_item.dart';
+import 'package:sportega/ui/components/photo/photo_item.dart';
 import 'package:sportega/ui/holders/photo.dart';
 
 class PhotoList extends StatefulWidget {

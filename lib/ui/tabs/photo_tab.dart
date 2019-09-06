@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:sportega/ui/components/photo_list.dart';
+import 'package:sportega/ui/components/photo/photo_list.dart';
 import 'package:sportega/ui/holders/photo.dart';
 
 class PhotoTab extends StatefulWidget {

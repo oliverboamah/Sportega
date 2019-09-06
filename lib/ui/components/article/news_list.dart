@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sportega/ui/components/news_item.dart';
+import 'package:sportega/ui/components/article/news_item.dart';
 import 'package:sportega/ui/holders/news.dart';
 
 class NewsList extends StatefulWidget {

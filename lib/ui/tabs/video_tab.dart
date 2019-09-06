@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:sportega/ui/components/video_list.dart';
-
+import 'package:sportega/ui/components/video/video_list.dart';
 import 'package:sportega/ui/holders/video.dart';
 
 class VideoTab extends StatefulWidget {

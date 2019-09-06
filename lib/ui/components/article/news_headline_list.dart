@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sportega/ui/components/news_headline_item.dart';
+import 'package:sportega/ui/components/article/news_headline_item.dart';
 import 'package:sportega/ui/holders/news.dart';
 
 class NewsHeadlineList extends StatefulWidget {

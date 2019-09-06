@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:sportega/ui/components/news_headline_list.dart';
-import 'package:sportega/ui/components/news_list.dart';
+import 'package:sportega/ui/components/article/news_headline_list.dart';
+import 'package:sportega/ui/components/article/news_list.dart';
+import 'package:sportega/ui/components/article/trending_header.dart';
 import 'package:sportega/ui/components/text_header.dart';
-import 'package:sportega/ui/components/trending_header.dart';
 import 'package:sportega/ui/holders/news.dart';
 
 class ArticleTab extends StatefulWidget {

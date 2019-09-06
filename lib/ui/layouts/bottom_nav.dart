@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sportega/values/colors/colors.dart';
@@ -11,10 +12,10 @@ class BottomNav extends StatefulWidget {
 
   final List<String> titles = ['Article', 'Video', 'Photo', 'Favourite'];
   final List<IconData> icons = [
-    Icons.pages,
-    Icons.video_label,
-    Icons.photo,
-    Icons.favorite
+    CupertinoIcons.news_solid,
+    CupertinoIcons.video_camera_solid,
+    CupertinoIcons.photo_camera_solid,
+    CupertinoIcons.heart_solid
   ];
 
   @override

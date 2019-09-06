@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sportega/env.dart';
 import 'package:sportega/values/colors/colors.dart';
 
-AppBar getAppBar() {
+AppBar getHomeAppBar() {
   return AppBar(
     title: Text(APP_NAME),
     centerTitle: true,

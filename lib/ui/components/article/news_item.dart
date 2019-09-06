@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sportega/ui/holders/news.dart';
 import 'package:sportega/values/colors/colors.dart';
@@ -65,7 +66,7 @@ class _NewsItemState extends State<NewsItem> {
                               .onFavoriteIconClicked(this.widget.position);
                         },
                         child: Icon(
-                          Icons.favorite,
+                          CupertinoIcons.heart_solid,
                           size: SMALL_ICON_SIZE,
                           color: this.isFavoriteIconSeleted
                               ? Color(PRIMARY_TEXT_COLOR)
@@ -79,7 +80,7 @@ class _NewsItemState extends State<NewsItem> {
                                 .widget
                                 .onShareIconClicked(this.widget.position),
                             child: Icon(
-                              Icons.share,
+                              CupertinoIcons.share_up,
                               color: Color(SECONDARY_TEXT_COLOR),
                             ),
                           )),

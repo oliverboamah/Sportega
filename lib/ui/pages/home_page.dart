@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sportega/ui/layouts/app_bar.dart';
+import 'package:sportega/ui/layouts/home_app_bar.dart';
 import 'package:sportega/ui/layouts/bottom_nav.dart';
 import 'package:sportega/ui/layouts/nav_drawer.dart';
 import 'package:sportega/ui/tabs/article_tab.dart';
@@ -22,7 +22,7 @@ class _HomePageState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppBar(),
+      appBar: getHomeAppBar(),
       drawer: NavDrawer(),
       bottomNavigationBar: BottomNav(
         onItemSelected: (index)=> this.setState(()=>this.selectedTabIndex = index)

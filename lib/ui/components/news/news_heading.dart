@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sportega/values/colors/colors.dart';
 
-class ArticleHeading extends StatelessWidget {
+class NewsHeading extends StatelessWidget {
   final String title;
   final String datetime;
 
-  ArticleHeading({this.title, this.datetime});
+  NewsHeading({this.title, this.datetime});
 
   @override
   Widget build(BuildContext context) {

@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sportega/values/colors/colors.dart';
 
-class ArticleAppBar {
+class NewsAppBar {
   final Function onSendIconClicked;
 
-  ArticleAppBar({this.onSendIconClicked});
+  NewsAppBar({this.onSendIconClicked});
 
-  AppBar getArticleAppBar(BuildContext context) {
+  AppBar getNewsAppBar(BuildContext context) {
     return AppBar(
       leading: new IconButton(
         icon: new Icon(CupertinoIcons.back, color: Colors.white),

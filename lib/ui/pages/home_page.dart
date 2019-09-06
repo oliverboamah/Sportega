@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:sportega/ui/layouts/home_app_bar.dart';
 import 'package:sportega/ui/layouts/bottom_nav.dart';
 import 'package:sportega/ui/layouts/nav_drawer.dart';
-import 'package:sportega/ui/tabs/article_tab.dart';
 import 'package:sportega/ui/tabs/favourite_tab.dart';
+import 'package:sportega/ui/tabs/news_tab.dart';
 import 'package:sportega/ui/tabs/photo_tab.dart';
 import 'package:sportega/ui/tabs/video_tab.dart';
 
@@ -34,11 +34,11 @@ class _HomePageState extends State {
 
   Widget _showTab() {
     switch (this.selectedTabIndex){
-      case 0: return ArticleTab();
+      case 0: return NewsTab();
       case 1: return VideoTab();
       case 2: return PhotoTab();
       case 3: return FavouriteTab();
-      default: return ArticleTab();
+      default: return NewsTab();
     }
   }
 }

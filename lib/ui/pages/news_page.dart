@@ -1,25 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sportega/ui/components/article/article_heading.dart';
+import 'package:sportega/ui/components/news/news_heading.dart';
 import 'package:sportega/ui/holders/news.dart';
-import 'package:sportega/ui/layouts/article_app_bar.dart';
+import 'package:sportega/ui/layouts/news_app_bar.dart';
 
-class ArticlePage extends StatefulWidget {
+class NewsPage extends StatefulWidget {
   final News news;
 
-  ArticlePage({this.news});
+  NewsPage({this.news});
 
   @override
-  State<StatefulWidget> createState() => _ArticlePageState();
+  State<StatefulWidget> createState() => _NewsPageState();
 }
 
-class _ArticlePageState extends State<ArticlePage> {
+class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar:
-            ArticleAppBar(onSendIconClicked: () => print('send icon clicked'))
-                .getArticleAppBar(context),
+            NewsAppBar(onSendIconClicked: () => print('send icon clicked'))
+                .getNewsAppBar(context),
         body: ListView(
           children: <Widget>[
             Container(
@@ -27,7 +27,7 @@ class _ArticlePageState extends State<ArticlePage> {
               alignment: Alignment.center,
               child: Column(
                 children: <Widget>[
-                  ArticleHeading(
+                  NewsHeading(
                     title: this.widget.news.title,
                     datetime: this.widget.news.datetime,
                   ),

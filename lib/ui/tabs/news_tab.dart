@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:sportega/ui/components/article/news_headline_list.dart';
-import 'package:sportega/ui/components/article/news_list.dart';
-import 'package:sportega/ui/components/article/trending_header.dart';
+import 'package:sportega/ui/components/news/news_headline_list.dart';
+import 'package:sportega/ui/components/news/news_list.dart';
+import 'package:sportega/ui/components/news/trending_header.dart';
 import 'package:sportega/ui/components/text_header.dart';
 import 'package:sportega/ui/holders/news.dart';
-import 'package:sportega/ui/pages/article_page.dart';
+import 'package:sportega/ui/pages/news_page.dart';
 
-class ArticleTab extends StatefulWidget {
+class NewsTab extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _ArticleTabState();
+  State<StatefulWidget> createState() => _NewsTabState();
 }
 
-class _ArticleTabState extends State<ArticleTab> {
+class _NewsTabState extends State<NewsTab> {
   List<News> newsList = [
     News(
         image: 'assets/images/rooney.png',
@@ -70,7 +70,7 @@ class _ArticleTabState extends State<ArticleTab> {
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  ArticlePage(news: this.newsList[position])));
+                  NewsPage(news: this.newsList[position])));
     });
   }
 }

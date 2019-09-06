@@ -10,7 +10,7 @@ class BottomNav extends StatefulWidget {
 
   BottomNav ( {this.onItemSelected});
 
-  final List<String> titles = ['Article', 'Video', 'Photo', 'Favourite'];
+  final List<String> titles = ['News', 'Video', 'Photo', 'Favourite'];
   final List<IconData> icons = [
     CupertinoIcons.news_solid,
     CupertinoIcons.video_camera_solid,

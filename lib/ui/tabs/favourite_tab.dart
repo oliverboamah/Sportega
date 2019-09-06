@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:sportega/ui/components/favorite/favorite_news_list.dart';
 import 'package:sportega/ui/components/text_header.dart';
 import 'package:sportega/ui/holders/news.dart';
+import 'package:sportega/ui/routes/routes.dart';
 
 class FavouriteTab extends StatefulWidget {
   @override
@@ -35,7 +36,8 @@ class _FavouriteTabState extends State<FavouriteTab> {
         ),
         FavoriteNewsList(
           newsList: this.newsList,
-          onNewsItemClicked: (position) => print(position),
+          onNewsItemClicked: (position) =>
+              Routes().navigateToNewsPage(context, this.newsList[position]),
         )
       ],
     );

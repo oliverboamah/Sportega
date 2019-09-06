@@ -5,7 +5,7 @@ import 'package:sportega/ui/components/news/news_list.dart';
 import 'package:sportega/ui/components/news/trending_header.dart';
 import 'package:sportega/ui/components/text_header.dart';
 import 'package:sportega/ui/holders/news.dart';
-import 'package:sportega/ui/pages/news_page.dart';
+import 'package:sportega/ui/routes/routes.dart';
 
 class NewsTab extends StatefulWidget {
   @override
@@ -48,29 +48,19 @@ class _NewsTabState extends State<NewsTab> {
         ),
         NewsHeadlineList(
           newsList: this.newsList,
-          onItemSelected: (position) => this._navigateToArticlePage(position),
+          onItemSelected: (position) =>
+              Routes().navigateToNewsPage(context, this.newsList[position]),
         ),
         TrendingHeader(
           title: 'Trending',
         ),
         NewsList(
           newsList: this.newsList,
-          onNewsItemClicked: (position) =>
-              this._navigateToArticlePage(position),
+          onNewsItemClicked: (position) => Routes().navigateToNewsPage(context, this.newsList[position]),
           onNewsItemFavoriteIconClicked: (position) =>
-              this._navigateToArticlePage(position),
+              Routes().navigateToNewsPage(context, this.newsList[position]),
         )
       ],
     );
-  }
-
-  void _navigateToArticlePage(position) {
-    Future.delayed(const Duration(seconds: 4), () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  NewsPage(news: this.newsList[position])));
-    });
   }
 }

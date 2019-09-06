@@ -7,7 +7,7 @@ import 'package:sportega/ui/layouts/news_app_bar.dart';
 class NewsPage extends StatefulWidget {
   final News news;
 
-  NewsPage({this.news});
+  NewsPage({@required this.news});
 
   @override
   State<StatefulWidget> createState() => _NewsPageState();

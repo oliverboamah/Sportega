@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:sportega/ui/components/video/video_list.dart';
 import 'package:sportega/ui/holders/video.dart';
+import 'package:sportega/ui/routes/routes.dart';
 
 class VideoTab extends StatefulWidget {
   @override
@@ -21,7 +22,8 @@ class _VideoTabState extends State<VideoTab> {
   Widget build(BuildContext context) {
     return VideoList(
       videoList: this.videoList,
-      onItemSelected: () => {},
+      onItemSelected: (position) =>
+          Routes().navigateToVideoPage(context, this.videoList[position]),
     );
   }
 

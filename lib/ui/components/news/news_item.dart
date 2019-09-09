@@ -36,7 +36,7 @@ class _NewsItemState extends State<NewsItem> {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: Image.asset(
+              child: Image.network(
                 this.widget.news.image,
                 width: 70,
                 height: 80,

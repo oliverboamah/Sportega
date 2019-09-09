@@ -33,7 +33,7 @@ class _NewsPageState extends State<NewsPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0),
-                    child: Image.asset(
+                    child: Image.network(
                       this.widget.news.image,
                       height: 250,
                       width: MediaQuery.of(context).size.width,

@@ -1,45 +1,79 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:sportega/services/api/news_repo.dart';
 import 'package:sportega/ui/components/news/news_headline_list.dart';
 import 'package:sportega/ui/components/news/news_list.dart';
 import 'package:sportega/ui/components/news/trending_header.dart';
+import 'package:sportega/ui/components/offline.dart';
+import 'package:sportega/ui/components/progress.dart';
+import 'package:sportega/ui/components/server_error.dart';
 import 'package:sportega/ui/components/text_header.dart';
+import 'package:sportega/ui/constants/load_data_status.dart';
 import 'package:sportega/ui/holders/news.dart';
 import 'package:sportega/ui/routes/routes.dart';
 
 class NewsTab extends StatefulWidget {
+  final Function onGoToFavoriteButtonClicked;
+
+  NewsTab({this.onGoToFavoriteButtonClicked});
+
   @override
   State<StatefulWidget> createState() => _NewsTabState();
 }
 
 class _NewsTabState extends State<NewsTab> {
-  List<News> newsList = [
-    News(
-        image: 'assets/images/rooney.png',
-        title: 'Why Rooney is the best forward ever at Manchester United',
-        category: 'bbc-sport',
-        datetime: 'Jun 17, 2019, 12:44 IST',
-        content:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
-    News(
-        image: 'assets/images/drogba.jpg',
-        title:
-            'Why Didier Drogba could be a better chelsea manager than Lampard',
-        category: 'bbc-sport',
-        datetime: 'Jun 17, 2019, 12:44 IST',
-        content:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
-    News(
-        image: 'assets/images/rooney.png',
-        title: 'Why Rooney is the best forward ever at Manchester United',
-        category: 'bbc-sport',
-        datetime: 'Jun 17, 2019, 12:44 IST',
-        content:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
-  ];
+  // load data status
+  LoadDataStatus _loadDataStatus;
+
+  // news data
+  List<News> newsList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    this._loadData();
+  }
+
+  void _loadData() {
+    // show progress indicator
+    this.setState(() => this._loadDataStatus = LoadDataStatus.loading);
+
+    NewsRepo().getNews().then((news) {
+      this.setState(() {
+        this.newsList = news;
+        this._loadDataStatus = LoadDataStatus.success;
+      });
+    }).catchError((error) {
+      this.setState(() {
+        this._loadDataStatus = error is SocketException
+            ? LoadDataStatus.offline
+            : LoadDataStatus.serverError;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    return this._content(context);
+  }
+
+  Widget _content(BuildContext context) {
+    switch (this._loadDataStatus) {
+      case LoadDataStatus.success:
+        return this._getNewsWidget(context);
+      case LoadDataStatus.offline:
+        return this._getOfflineWidget();
+      case LoadDataStatus.serverError:
+        return this._getServerErrorWidget();
+      default:
+        return Progress();
+    }
+  }
+
+  // widget containing all the news views
+  Widget _getNewsWidget(BuildContext context) {
     return Column(
       children: <Widget>[
         TextHeader(
@@ -47,7 +81,7 @@ class _NewsTabState extends State<NewsTab> {
           subTitle: 'Today, Sep 3rd, Tuesday',
         ),
         NewsHeadlineList(
-          newsList: this.newsList,
+          newsList: this.newsList.sublist(0, 4),
           onItemSelected: (position) =>
               Routes().navigateToNewsPage(context, this.newsList[position]),
         ),
@@ -55,12 +89,35 @@ class _NewsTabState extends State<NewsTab> {
           title: 'Trending',
         ),
         NewsList(
-          newsList: this.newsList,
-          onNewsItemClicked: (position) => Routes().navigateToNewsPage(context, this.newsList[position]),
+          newsList: this.newsList.sublist(4),
+          onNewsItemClicked: (position) =>
+              Routes().navigateToNewsPage(context, this.newsList[position]),
           onNewsItemFavoriteIconClicked: (position) =>
               Routes().navigateToNewsPage(context, this.newsList[position]),
         )
       ],
+    );
+  }
+
+  // offline widget
+  Widget _getOfflineWidget() {
+    return Offline(
+      image: 'assets/images/offline.png',
+      title: 'You are Offline',
+      subTitle: 'Read news items you saved in your favorites folder',
+      buttonTitle: 'Go to Favorites',
+      onButtonClicked: () => this.widget.onGoToFavoriteButtonClicked(),
+      onRetryClicked: () => this._loadData(),
+    );
+  }
+
+  // offline widget
+  Widget _getServerErrorWidget() {
+    return ServerError(
+      image: 'assets/images/server_error.png',
+      title: 'Oops! It\'s not you, it\'s us',
+      subTitle: 'A server error was encountered when loading the data',
+      onRetryClicked: () => this._loadData(),
     );
   }
 }

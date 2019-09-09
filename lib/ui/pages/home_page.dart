@@ -34,7 +34,10 @@ class _HomePageState extends State {
   Widget _showTab() {
     switch (this.selectedTabIndex) {
       case 0:
-        return NewsTab();
+        return NewsTab(
+          onGoToFavoriteButtonClicked: () =>
+              this.setState(() => this.selectedTabIndex = 3),
+        );
       case 1:
         return VideoTab();
       case 2:
@@ -42,7 +45,10 @@ class _HomePageState extends State {
       case 3:
         return FavouriteTab();
       default:
-        return NewsTab();
+        return NewsTab(
+          onGoToFavoriteButtonClicked: () =>
+              this.setState(() => this.selectedTabIndex = 3),
+        );
     }
   }
 

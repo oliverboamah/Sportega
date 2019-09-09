@@ -19,7 +19,7 @@ class NewsHeadlineItem extends StatelessWidget {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
+              child: Image.network(
                 this.news.image,
                 width: 300,
                 height: 200,

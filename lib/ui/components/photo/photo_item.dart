@@ -48,7 +48,7 @@ class PhotoItem extends StatelessWidget {
           ),
           Container(
             width: 150,
-            padding: EdgeInsets.only(top: 6),
+            padding: EdgeInsets.only(top: 5),
             child: Text(
                 this.photo.title.length <= 55
                   ? this.photo.title

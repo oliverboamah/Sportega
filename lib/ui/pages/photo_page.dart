@@ -42,7 +42,7 @@ class PhotoPage extends StatelessWidget {
                 height: 500,
                 width: MediaQuery.of(context).size.width,
                 child: PhotoView(
-                  imageProvider: AssetImage(this.photo.image),
+                  imageProvider: NetworkImage(this.photo.image),
                 ),
               )
             ],

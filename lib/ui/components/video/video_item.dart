@@ -20,7 +20,7 @@ class VideoItem extends StatelessWidget {
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
+                child: Image.network(
                   this.video.image,
                   width: 160,
                   height: 180,
@@ -50,20 +50,14 @@ class VideoItem extends StatelessWidget {
             width: 150,
             padding: EdgeInsets.only(top: 6),
             child: Text(
-              this.video.title,
+              this.video.title.length <= 55
+                  ? this.video.title
+                  : this.video.title.substring(0, 55) + "...",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color(PRIMARY_TEXT_COLOR)),
             ),
           ),
-          Container(
-            width: 150,
-            padding: EdgeInsets.only(top: 10),
-            child: Text(
-              this.video.time,
-              style: TextStyle(color: Color(SECONDARY_TEXT_COLOR)),
-            ),
-          )
         ],
       ),
     );

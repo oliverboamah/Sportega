@@ -20,7 +20,7 @@ class PhotoItem extends StatelessWidget {
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
+                child: Image.network(
                   this.photo.image,
                   width: 160,
                   height: 180,
@@ -50,7 +50,9 @@ class PhotoItem extends StatelessWidget {
             width: 150,
             padding: EdgeInsets.only(top: 6),
             child: Text(
-              this.photo.title,
+                this.photo.title.length <= 55
+                  ? this.photo.title
+                  : this.photo.title.substring(0, 55) + "...",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color(PRIMARY_TEXT_COLOR)),

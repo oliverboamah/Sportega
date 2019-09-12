@@ -20,7 +20,7 @@ class _VideoPageState extends State<VideoPage> {
             VideoAppBar(title: this.widget.video.title).getVideoAppBar(context),
         body: YoutubePlayer(
           context: context,
-          videoId: "iLnmTe5Q2Qw",
+          videoId: this.widget.video.videoId,
           flags: YoutubePlayerFlags(
             autoPlay: true,
             showVideoProgressIndicator: true,

@@ -36,8 +36,8 @@ class _BottomNavState extends State<BottomNav> {
         onTap: (index) => widget.onItemSelected(index),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            title: Text(widget.titles[0], style: commonTextStyle()),
-            icon: Icon(widget.icons[0], color: Color(PRIMARY_TEXT_COLOR)),
+            title: Text(widget.titles[0], style: commonTextStyle(),),
+            icon: Icon(widget.icons[0], color: Color(PRIMARY_TEXT_COLOR))
           ),
           BottomNavigationBarItem(
             title: Text(widget.titles[1], style: commonTextStyle()),

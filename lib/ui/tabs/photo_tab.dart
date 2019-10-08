@@ -75,7 +75,7 @@ class _PhotoTabState extends State<PhotoTab> {
       onItemSelected: (position) =>
           Routes().navigateToPhotoPage(context, this.photoList[position]),
     );
-    ;
+    
   }
 
   // offline widget

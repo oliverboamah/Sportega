@@ -24,6 +24,9 @@ dependencies:
 
   photo_view:
 
+  # floor ORM 
+  floor: ^0.9.0
+
   # http
   http: ^0.12.0+2
 
@@ -34,6 +37,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  floor_generator: ^0.9.0
+  build_runner: ^1.7.1   
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

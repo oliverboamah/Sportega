@@ -103,9 +103,9 @@ class _NewsTabState extends State<NewsTab> {
         NewsList(
           newsList: this.newsList.sublist(4),
           onNewsItemClicked: (position) =>
-              Routes().navigateToNewsPage(context, this.newsList[position]),
+              Routes().navigateToNewsPage(context, this.newsList[position + 4]),
           onNewsItemFavoriteIconClicked: (position) async {
-            await this.newsModel.insertNews(this.newsList[position]);
+            await this.newsModel.insertNews(this.newsList[position + 4]);
           },
         )
       ],

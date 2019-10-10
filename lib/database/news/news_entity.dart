@@ -2,22 +2,16 @@ import 'package:floor/floor.dart';
 
 @entity
 class NewsEntity {
-
   @PrimaryKey(autoGenerate: true)
-  int id;
+  final int id;
 
-  String image;
-  String title;
-  String content;
-  String category;
-  String datetime;
-  String url;
+  final String image;
+  final String title;
+  final String content;
+  final String category;
+  final String datetime;
+  final String url;
 
-  NewsEntity(
-      {this.title,
-      this.image,
-      this.content,
-      this.category,
-      this.datetime,
-      this.url});
+  NewsEntity(this.id, this.image, this.title, this.content, this.category,
+      this.datetime, this.url);
 }

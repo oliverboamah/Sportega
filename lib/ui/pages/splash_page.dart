@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sportega/services/api/news_repo.dart';
 import 'package:sportega/ui/routes/routes.dart';
 
 class SplashPage extends StatefulWidget {

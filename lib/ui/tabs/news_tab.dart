@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:sportega/database/news/news_model.dart';
 import 'package:sportega/services/api/news_repo.dart';
 import 'package:sportega/ui/components/news/news_headline_list.dart';
 import 'package:sportega/ui/components/news/news_list.dart';
@@ -30,10 +31,21 @@ class _NewsTabState extends State<NewsTab> {
   // news data
   List<News> newsList = [];
 
+  // news db model
+  NewsModel newsModel;
+
   @override
   void initState() {
     super.initState();
+    this._initializeModel();
     this._loadData();
+  }
+
+  // initialize news model
+  void _initializeModel() async {
+    this.newsModel = await NewsModel.getInstance();
+    // var a = await this.newsModel.getAllNews();
+    // print(a);
   }
 
   void _loadData() {
@@ -92,8 +104,9 @@ class _NewsTabState extends State<NewsTab> {
           newsList: this.newsList.sublist(4),
           onNewsItemClicked: (position) =>
               Routes().navigateToNewsPage(context, this.newsList[position]),
-          onNewsItemFavoriteIconClicked: (position) =>
-              Routes().navigateToNewsPage(context, this.newsList[position]),
+          onNewsItemFavoriteIconClicked: (position) async {
+            await this.newsModel.insertNews(this.newsList[position]);
+          },
         )
       ],
     );

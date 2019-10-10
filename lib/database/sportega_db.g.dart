@@ -116,12 +116,13 @@ class _$NewsDao extends NewsDao {
   final QueryAdapter _queryAdapter;
 
   static final _newsEntityMapper = (Map<String, dynamic> row) => NewsEntity(
-      row['id'] as String,
+      row['id'] as int,
       row['image'] as String,
       row['title'] as String,
       row['content'] as String,
       row['category'] as String,
-      row['datetime'] as String);
+      row['datetime'] as String,
+      row['url'] as String);
 
   final InsertionAdapter<NewsEntity> _newsEntityInsertionAdapter;
 

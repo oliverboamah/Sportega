@@ -13,4 +13,9 @@ class News {
       this.category = '',
       this.datetime = '',
       this.url = ''});
+
+  @override
+  String toString() {
+    return 'image: $image, title: $title, content: $content, category: $category, datetime: $datetime, url: $url';
+  }
 }

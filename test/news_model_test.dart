@@ -35,6 +35,11 @@ void main() {
       expect(updatedNewsListSize, greaterThan(newsListSize));
     });
 
+    test('Check newly inserted News', () async {
+      List<News> newsList = await newsModel.getAllNews();
+      print(newsList[newsList.length-1]);
+    });
+
     tearDown(() {
       newsModel = null;
     });

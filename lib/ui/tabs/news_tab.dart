@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sportega/database/news/news_model.dart';
 import 'package:sportega/services/api/news_repo.dart';
+import 'package:sportega/ui/components/my_flush_bar.dart';
 import 'package:sportega/ui/components/news/news_headline_list.dart';
 import 'package:sportega/ui/components/news/news_list.dart';
 import 'package:sportega/ui/components/news/trending_header.dart';
@@ -104,9 +105,8 @@ class _NewsTabState extends State<NewsTab> {
           newsList: this.newsList.sublist(4),
           onNewsItemClicked: (position) =>
               Routes().navigateToNewsPage(context, this.newsList[position + 4]),
-          onNewsItemFavoriteIconClicked: (position) async {
-            await this.newsModel.insertNews(this.newsList[position + 4]);
-          },
+          onNewsItemFavoriteIconClicked: (position) =>
+              this.saveNews(this.newsList[position + 4]),
         )
       ],
     );
@@ -132,5 +132,19 @@ class _NewsTabState extends State<NewsTab> {
       subTitle: 'A server error was encountered when loading the data',
       onRetryClicked: () => this._loadData(),
     );
+  }
+
+  // save news to database
+  void saveNews(News news) async {
+    this.newsModel.insertNews(news).then((value) {
+      MyFlushbar().show(
+          context: this.context,
+          title: 'Success',
+          message: 'News saved succesfully!',
+          success: true);
+    }).catchError((onError) {
+      MyFlushbar().show(
+          context: this.context, title: 'Oops', message: 'Error saving news!');
+    });
   }
 }

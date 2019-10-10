@@ -27,7 +27,7 @@ void main() {
       // insert news
       newsModel.insertNews(news);
 
-      // obtain new size of data
+      // obtain new size of news list 
       List<News> updatedNewsList = await newsModel.getAllNews();
       int updatedNewsListSize = updatedNewsList.length;
 
@@ -37,7 +37,17 @@ void main() {
 
     test('Check newly inserted News', () async {
       List<News> newsList = await newsModel.getAllNews();
-      print(newsList[newsList.length-1]);
+      print(newsList[newsList.length - 1]);
+    });
+
+    test('Delete All News Test', () async {
+      // delete all news
+      await newsModel.deleteAllNews();
+
+      // get all news
+      List<News> newsList = await newsModel.getAllNews();
+
+      expect(0, equals(newsList.length));
     });
 
     tearDown(() {

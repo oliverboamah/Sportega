@@ -9,4 +9,7 @@ abstract class NewsDao {
 
   @Query('SELECT * FROM NewsEntity')
   Future<List<NewsEntity>> getAllNews();
+
+  @Query('DELETE FROM NewsEntity')
+  Future<void> deleteAllNews();
 }

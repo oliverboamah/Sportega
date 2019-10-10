@@ -133,6 +133,11 @@ class _$NewsDao extends NewsDao {
   }
 
   @override
+  Future<void> deleteAllNews() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM NewsEntity');
+  }
+
+  @override
   Future<void> insertNews(NewsEntity newsEntity) async {
     await _newsEntityInsertionAdapter.insert(
         newsEntity, sqflite.ConflictAlgorithm.abort);

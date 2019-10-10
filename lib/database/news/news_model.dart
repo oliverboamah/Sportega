@@ -41,4 +41,8 @@ class NewsModel {
 
     return newsList;
   }
+
+  Future<void> deleteAllNews() async {
+    return await _database.newsDao.deleteAllNews();
+  }
 }

@@ -1,1 +1,1 @@
-enum LoadDataStatus { success, offline, serverError, loading }
+enum LoadDataStatus { success, offline, serverError, loading, nodata }

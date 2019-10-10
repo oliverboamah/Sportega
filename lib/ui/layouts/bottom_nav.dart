@@ -4,11 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:sportega/values/colors/colors.dart';
 
 class BottomNav extends StatefulWidget {
-
   // call back function when an item is selected
   final Function onItemSelected;
 
-  BottomNav ( {this.onItemSelected});
+  BottomNav({this.onItemSelected});
 
   final List<String> titles = ['News', 'Video', 'Photo', 'Favourite'];
   final List<IconData> icons = [
@@ -23,35 +22,43 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
-  TextStyle commonTextStyle() {
-    return TextStyle(color: Color(PRIMARY_TEXT_COLOR));
-  }
+  // selected tab index
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+        currentIndex: this._selectedIndex,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         selectedItemColor: Color(PRIMARY_COLOR),
-        onTap: (index) => widget.onItemSelected(index),
+        unselectedItemColor: Color(PRIMARY_TEXT_COLOR),
+        onTap: (index) {
+          widget.onItemSelected(index);
+          this.setState(() => this._selectedIndex = index);
+        },
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            title: Text(widget.titles[0], style: commonTextStyle(),),
-            icon: Icon(widget.icons[0], color: Color(PRIMARY_TEXT_COLOR))
+              title: Text(
+                widget.titles[0],
+              ),
+              icon: Icon(
+                widget.icons[0],
+              )),
+          BottomNavigationBarItem(
+            title: Text(widget.titles[1]),
+            icon: Icon(
+              widget.icons[1],
+            ),
           ),
           BottomNavigationBarItem(
-            title: Text(widget.titles[1], style: commonTextStyle()),
-            icon: Icon(widget.icons[1], color: Color(PRIMARY_TEXT_COLOR)),
+            title: Text(widget.titles[2]),
+            icon: Icon(widget.icons[2]),
           ),
           BottomNavigationBarItem(
-            title: Text(widget.titles[2], style: commonTextStyle()),
-            icon: Icon(widget.icons[2], color: Color(PRIMARY_TEXT_COLOR)),
+            title: Text(widget.titles[3]),
+            icon: Icon(widget.icons[3]),
           ),
-          BottomNavigationBarItem(
-            title: Text(widget.titles[3], style: commonTextStyle()),
-            icon: Icon(widget.icons[3], color: Color(PRIMARY_TEXT_COLOR)),
-          ),
-          
         ]);
   }
 }

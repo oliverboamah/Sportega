@@ -105,7 +105,7 @@ class _NewsTabState extends State<NewsTab> {
           newsList: this.newsList.sublist(4),
           onNewsItemClicked: (position) =>
               Routes().navigateToNewsPage(context, this.newsList[position + 4]),
-          onNewsItemFavoriteIconClicked: (position) =>
+          onNewsItemFavoriteIconSelected: (position) =>
               this.saveNews(this.newsList[position + 4]),
         )
       ],

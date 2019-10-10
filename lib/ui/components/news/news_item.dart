@@ -9,14 +9,14 @@ class NewsItem extends StatefulWidget {
   final News news;
   final Function onNewsItemClicked;
   final Function onShareIconClicked;
-  final Function onFavoriteIconClicked;
+  final Function onFavoriteIconSelected;
 
   NewsItem(
       {@required this.position,
       @required this.news,
       this.onNewsItemClicked,
       this.onShareIconClicked,
-      this.onFavoriteIconClicked});
+      this.onFavoriteIconSelected});
 
   @override
   State<StatefulWidget> createState() => _NewsItemState();
@@ -61,9 +61,12 @@ class _NewsItemState extends State<NewsItem> {
                         onTap: () {
                           this.setState(() => this.isFavoriteIconSeleted =
                               !this.isFavoriteIconSeleted);
-                          this
-                              .widget
-                              .onFavoriteIconClicked(this.widget.position);
+
+                          if (isFavoriteIconSeleted) {
+                            this
+                                .widget
+                                .onFavoriteIconSelected(this.widget.position);
+                          }
                         },
                         child: Icon(
                           CupertinoIcons.heart_solid,

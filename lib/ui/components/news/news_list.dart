@@ -6,13 +6,13 @@ class NewsList extends StatefulWidget {
   final List<News> newsList;
   final Function onNewsItemClicked;
   final Function onNewsItemShareIconClicked;
-  final Function onNewsItemFavoriteIconClicked;
+  final Function onNewsItemFavoriteIconSelected;
 
   NewsList(
       {@required this.newsList,
       this.onNewsItemClicked,
       this.onNewsItemShareIconClicked,
-      this.onNewsItemFavoriteIconClicked});
+      this.onNewsItemFavoriteIconSelected});
 
   @override
   State<StatefulWidget> createState() => _NewsListState();
@@ -31,8 +31,8 @@ class _NewsListState extends State<NewsList> {
                 news: this.widget.newsList[position],
                 onNewsItemClicked: (position) =>
                     this.widget.onNewsItemClicked(position),
-                onFavoriteIconClicked: (position) =>
-                    this.widget.onNewsItemFavoriteIconClicked(position),
+                onFavoriteIconSelected: (position) =>
+                    this.widget.onNewsItemFavoriteIconSelected(position),
                 onShareIconClicked: (position) =>
                     this.widget.onNewsItemShareIconClicked(position),
               );

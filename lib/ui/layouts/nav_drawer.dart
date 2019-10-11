@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sportega/values/colors/colors.dart';
 
 class NavDrawer extends StatefulWidget {
@@ -34,6 +35,12 @@ class NavDrawer extends StatefulWidget {
 
 class _NavDrawerState extends State<NavDrawer> {
   String selectedMenuItem = '';
+
+  @override
+  void initState() {
+    super.initState();
+    this._loadState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +96,7 @@ class _NavDrawerState extends State<NavDrawer> {
               ),
             ),
             ListTile(
+              key: PageStorageKey('ListTile1'),
               title: Text(
                 this.widget.menuTitles[0],
                 style: TextStyle(
@@ -108,7 +116,9 @@ class _NavDrawerState extends State<NavDrawer> {
               onTap: () {
                 this.setState(
                     () => this.selectedMenuItem = this.widget.menuTitles[0]);
+                this._saveState(this.widget.menuTitles[0]);
                 this.widget.onMenuItemClicked(this.widget.menuTitles[0]);
+
                 Navigator.of(context).pop();
               },
             ),
@@ -128,6 +138,7 @@ class _NavDrawerState extends State<NavDrawer> {
               onTap: () {
                 this.setState(
                     () => this.selectedMenuItem = this.widget.menuTitles[1]);
+                this._saveState(this.widget.menuTitles[1]);
                 this.widget.onMenuItemClicked(this.widget.menuTitles[1]);
                 Navigator.of(context).pop();
               },
@@ -148,6 +159,7 @@ class _NavDrawerState extends State<NavDrawer> {
               onTap: () {
                 this.setState(
                     () => this.selectedMenuItem = this.widget.menuTitles[2]);
+                this._saveState(this.widget.menuTitles[2]);
                 this.widget.onMenuItemClicked(this.widget.menuTitles[2]);
                 Navigator.of(context).pop();
               },
@@ -168,6 +180,7 @@ class _NavDrawerState extends State<NavDrawer> {
               onTap: () {
                 this.setState(
                     () => this.selectedMenuItem = this.widget.menuTitles[3]);
+                this._saveState(this.widget.menuTitles[3]);
                 this.widget.onMenuItemClicked(this.widget.menuTitles[3]);
                 Navigator.of(context).pop();
               },
@@ -189,6 +202,7 @@ class _NavDrawerState extends State<NavDrawer> {
               onTap: () {
                 this.setState(
                     () => this.selectedMenuItem = this.widget.menuTitles[4]);
+                this._saveState(this.widget.menuTitles[4]);
                 this.widget.onMenuItemClicked(this.widget.menuTitles[4]);
                 Navigator.of(context).pop();
               },
@@ -197,5 +211,26 @@ class _NavDrawerState extends State<NavDrawer> {
         ),
       ),
     );
+  }
+
+  // save selectedMenuItem state
+  void _saveState(String selectedMenuItem) {
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setString('selectedMenuItem', selectedMenuItem);
+    }).catchError((onError) {
+      print(onError);
+    });
+  }
+
+  // load selectedMenuItem state
+  void _loadState() {
+    SharedPreferences.getInstance().then((prefs) {
+      final value = prefs.getString('selectedMenuItem');
+      if (value != null) {
+        this.setState(() => this.selectedMenuItem = value);
+      }
+    }).catchError((onError) {
+      print(onError);
+    });
   }
 }

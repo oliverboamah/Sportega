@@ -60,9 +60,8 @@ class _HomePageState extends State {
         ),
         backgroundColor: Colors.white,
         body: PageStorage(
-          child: this._tabs[this._selectedTabIndex],
-          bucket: this.pageStorageBucket
-        ));
+            child: this._tabs[this._selectedTabIndex],
+            bucket: this.pageStorageBucket));
   }
 
   void _onDrawerMenuItemClicked(String title) {

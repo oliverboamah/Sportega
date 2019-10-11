@@ -16,7 +16,7 @@ class NewsItem extends StatefulWidget {
       @required this.news,
       this.onNewsItemClicked,
       this.onShareIconClicked,
-      this.onFavoriteIconSelected});
+      this.onFavoriteIconSelected}); 
 
   @override
   State<StatefulWidget> createState() => _NewsItemState();

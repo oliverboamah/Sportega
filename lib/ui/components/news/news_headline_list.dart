@@ -6,7 +6,9 @@ class NewsHeadlineList extends StatefulWidget {
   final List<News> newsList;
   final Function onItemSelected;
 
-  NewsHeadlineList({@required this.newsList, this.onItemSelected});
+  NewsHeadlineList(
+      {@required Key key, @required this.newsList, this.onItemSelected})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _NewsHeadlineListState();

@@ -19,7 +19,7 @@ import 'package:sportega/ui/routes/routes.dart';
 class NewsTab extends StatefulWidget {
   final Function onGoToFavoriteButtonClicked;
 
-  NewsTab({this.onGoToFavoriteButtonClicked});
+  NewsTab({@required Key key, this.onGoToFavoriteButtonClicked}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _NewsTabState();
@@ -45,18 +45,23 @@ class _NewsTabState extends State<NewsTab> {
   // initialize news model
   void _initializeModel() async {
     this.newsModel = await NewsModel.getInstance();
-    // var a = await this.newsModel.getAllNews();
-    // print(a);
   }
 
   void _loadData() {
+    // returns true if tab state data is present and was loaded successfully
+    if (this._initializeTabStateData()) {
+      return;
+    }
+
     // show progress indicator
     this.setState(() => this._loadDataStatus = LoadDataStatus.loading);
 
     NewsRepo().getNews().then((news) {
       this.setState(() {
         this.newsList = news;
-        this._loadDataStatus = LoadDataStatus.success;
+
+        // save tab state data
+        this._saveTabStateData(LoadDataStatus.success, news);
       });
     }).catchError((error) {
       this.setState(() {
@@ -94,6 +99,7 @@ class _NewsTabState extends State<NewsTab> {
           subTitle: 'Today, Sep 3rd, Tuesday',
         ),
         NewsHeadlineList(
+          key: PageStorageKey('NewsHeadlineList'),
           newsList: this.newsList.sublist(0, 4),
           onItemSelected: (position) =>
               Routes().navigateToNewsPage(context, this.newsList[position]),
@@ -146,5 +152,32 @@ class _NewsTabState extends State<NewsTab> {
       MyFlushbar().show(
           context: this.context, title: 'Oops', message: 'Error saving news!');
     });
+  }
+
+  void _saveTabStateData(LoadDataStatus success, List<News> news) {
+    this._loadDataStatus = LoadDataStatus.success;
+    PageStorage.of(this.context).writeState(context, LoadDataStatus.success,
+        identifier: ValueKey('NewsTabLoadDataStatusState'));
+    PageStorage.of(this.context).writeState(context, news,
+        identifier: ValueKey('NewsTabNewsListState'));
+  }
+
+  // returns true if tab state data is present and was loaded successfully
+  bool _initializeTabStateData() {
+    // load tab state data if present
+    var loadDataStatusState = PageStorage.of(this.context)?.readState(
+        this.context,
+        identifier: ValueKey('NewsTabLoadDataStatusState'));
+    if (loadDataStatusState != null &&
+        loadDataStatusState == LoadDataStatus.success) {
+      this.setState(() {
+        this._loadDataStatus = LoadDataStatus.success;
+        this.newsList = PageStorage.of(this.context)?.readState(this.context,
+            identifier: ValueKey('NewsTabNewsListState'));
+      });
+      return true;
+    }
+
+    return false;
   }
 }

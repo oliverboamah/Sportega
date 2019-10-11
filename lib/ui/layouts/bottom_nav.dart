@@ -7,7 +7,10 @@ class BottomNav extends StatefulWidget {
   // call back function when an item is selected
   final Function onItemSelected;
 
-  BottomNav({this.onItemSelected});
+  // current index
+  final int currentIndex;
+
+  BottomNav({@required this.currentIndex, this.onItemSelected});
 
   final List<String> titles = ['News', 'Video', 'Photo', 'Favourite'];
   final List<IconData> icons = [
@@ -22,20 +25,26 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
-  // selected tab index
-  int _selectedIndex = 0;
+  int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    this._currentIndex = this.widget.currentIndex;
+  }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        currentIndex: this._selectedIndex,
+        currentIndex: this._currentIndex,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         selectedItemColor: Color(PRIMARY_COLOR),
         unselectedItemColor: Color(PRIMARY_TEXT_COLOR),
+        
         onTap: (index) {
-          widget.onItemSelected(index);
-          this.setState(() => this._selectedIndex = index);
+          this.setState(() => this._currentIndex = index);
+          this.widget.onItemSelected(index);
         },
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(

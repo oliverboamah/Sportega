@@ -13,7 +13,8 @@ import 'package:sportega/ui/routes/routes.dart';
 class VideoTab extends StatefulWidget {
   final Function onGoToFavoriteButtonClicked;
 
-  VideoTab({this.onGoToFavoriteButtonClicked});
+  VideoTab({@required Key key, this.onGoToFavoriteButtonClicked})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _VideoTabState();
@@ -33,6 +34,11 @@ class _VideoTabState extends State<VideoTab> {
   }
 
   void _loadData() {
+    // returns true if tab state data is present and was loaded successfully
+    if (this._initializeTabStateData()) {
+      return;
+    }
+
     // show progress indicator
     this.setState(() => this._loadDataStatus = LoadDataStatus.loading);
 
@@ -40,6 +46,8 @@ class _VideoTabState extends State<VideoTab> {
       this.setState(() {
         this.videoList = videos;
         this._loadDataStatus = LoadDataStatus.success;
+        // save tab state data
+        this._saveTabStateData(LoadDataStatus.success, videos);
       });
     }).catchError((error) {
       this.setState(() {
@@ -97,5 +105,32 @@ class _VideoTabState extends State<VideoTab> {
       subTitle: 'A server error was encountered when loading the data',
       onRetryClicked: () => this._loadData(),
     );
+  }
+
+  void _saveTabStateData(LoadDataStatus success, List<Video> videos) {
+    this._loadDataStatus = LoadDataStatus.success;
+    PageStorage.of(this.context).writeState(context, LoadDataStatus.success,
+        identifier: ValueKey('VideoLoadDataStatusState'));
+    PageStorage.of(this.context).writeState(context, videos,
+        identifier: ValueKey('VideoTabVideoListState'));
+  }
+
+  // returns true if tab state data is present and was loaded successfully
+  bool _initializeTabStateData() {
+    // load tab state data if present
+    var loadDataStatusState = PageStorage.of(this.context)?.readState(
+        this.context,
+        identifier: ValueKey('VideoLoadDataStatusState'));
+    if (loadDataStatusState != null &&
+        loadDataStatusState == LoadDataStatus.success) {
+      this.setState(() {
+        this._loadDataStatus = LoadDataStatus.success;
+        this.videoList = PageStorage.of(this.context)?.readState(this.context,
+            identifier: ValueKey('VideoTabVideoListState'));
+      });
+      return true;
+    }
+
+    return false;
   }
 }

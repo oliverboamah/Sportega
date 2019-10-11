@@ -13,7 +13,8 @@ import 'package:sportega/ui/routes/routes.dart';
 class PhotoTab extends StatefulWidget {
   final Function onGoToFavoriteButtonClicked;
 
-  PhotoTab({this.onGoToFavoriteButtonClicked});
+  const PhotoTab({@required Key key, this.onGoToFavoriteButtonClicked})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _PhotoTabState();
@@ -33,6 +34,11 @@ class _PhotoTabState extends State<PhotoTab> {
   }
 
   void _loadData() {
+    // returns true if tab state data is present and was loaded successfully
+    if (this._initializeTabStateData()) {
+      return;
+    }
+
     // show progress indicator
     this.setState(() => this._loadDataStatus = LoadDataStatus.loading);
 
@@ -40,6 +46,9 @@ class _PhotoTabState extends State<PhotoTab> {
       this.setState(() {
         this.photoList = photos;
         this._loadDataStatus = LoadDataStatus.success;
+
+        // save tab state data
+        this._saveTabStateData(LoadDataStatus.success, photos);
       });
     }).catchError((error) {
       this.setState(() {
@@ -75,7 +84,6 @@ class _PhotoTabState extends State<PhotoTab> {
       onItemSelected: (position) =>
           Routes().navigateToPhotoPage(context, this.photoList[position]),
     );
-    
   }
 
   // offline widget
@@ -98,5 +106,32 @@ class _PhotoTabState extends State<PhotoTab> {
       subTitle: 'A server error was encountered when loading the data',
       onRetryClicked: () => this._loadData(),
     );
+  }
+
+  void _saveTabStateData(LoadDataStatus success, List<Photo> photos) {
+    this._loadDataStatus = LoadDataStatus.success;
+    PageStorage.of(this.context).writeState(context, LoadDataStatus.success,
+        identifier: ValueKey('PhotoLoadDataStatusState'));
+    PageStorage.of(this.context).writeState(context, photos,
+        identifier: ValueKey('PhotoTabPhotoListState'));
+  }
+
+  // returns true if tab state data is present and was loaded successfully
+  bool _initializeTabStateData() {
+    // load tab state data if present
+    var loadDataStatusState = PageStorage.of(this.context)?.readState(
+        this.context,
+        identifier: ValueKey('PhotoLoadDataStatusState'));
+    if (loadDataStatusState != null &&
+        loadDataStatusState == LoadDataStatus.success) {
+      this.setState(() {
+        this._loadDataStatus = LoadDataStatus.success;
+        this.photoList = PageStorage.of(this.context)?.readState(this.context,
+            identifier: ValueKey('PhotoTabPhotoListState'));
+      });
+      return true;
+    }
+
+    return false;
   }
 }

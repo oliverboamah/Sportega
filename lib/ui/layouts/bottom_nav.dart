@@ -28,20 +28,15 @@ class _BottomNavState extends State<BottomNav> {
   int _currentIndex;
 
   @override
-  void initState() {
-    super.initState();
-    this._currentIndex = this.widget.currentIndex;
-  }
-
-  @override
   Widget build(BuildContext context) {
+    this._currentIndex = this.widget.currentIndex;
+
     return BottomNavigationBar(
         currentIndex: this._currentIndex,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         selectedItemColor: Color(PRIMARY_COLOR),
         unselectedItemColor: Color(PRIMARY_TEXT_COLOR),
-        
         onTap: (index) {
           this.setState(() => this._currentIndex = index);
           this.widget.onItemSelected(index);

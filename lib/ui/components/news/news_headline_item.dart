@@ -13,8 +13,17 @@ class NewsHeadlineItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => this.onClicked(this.position),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+      child: Container(
+        margin: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+              color: Colors.grey,
+              blurRadius: 5,
+              spreadRadius: -2,
+              offset: Offset(-5, -3))
+        ],
+        borderRadius: BorderRadius.circular(10)
+        ),
         child: Stack(
           children: <Widget>[
             ClipRRect(

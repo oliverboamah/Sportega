@@ -1,5 +1,5 @@
 # Sportega
- A Cross platform mobile sports news app to discover current sports news, watch matchday video highlights, explore sports celebrities lifestyle photos and many more.
+ A Cross platform mobile sports news app to discover current sports news, watch matchday video highlights, explore sports celebrities lifestyle photos and many more. Works on both Android and iOS.
  
 ## Screenshots
 News Tab            |  Videos Tab

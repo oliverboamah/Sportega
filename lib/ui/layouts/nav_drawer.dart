@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sportega/env.dart';
 import 'package:sportega/values/colors/colors.dart';
 
 class NavDrawer extends StatefulWidget {
-  final String logo = 'assets/images/logo.png';
-  final String title = 'Sportega';
-  final String subTitle = 'sports in your pocket';
   final List<String> menuTitles = [
     'News',
     'Video',
@@ -73,12 +71,12 @@ class _NavDrawerState extends State<NavDrawer> {
                     children: <Widget>[
                       CircleAvatar(
                         radius: 60,
-                        backgroundImage: AssetImage(this.widget.logo),
+                        backgroundImage: AssetImage(APP_LOGO),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0, bottom: 2),
                         child: Text(
-                          this.widget.title,
+                          APP_NAME,
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -86,7 +84,7 @@ class _NavDrawerState extends State<NavDrawer> {
                         ),
                       ),
                       Text(
-                        this.widget.subTitle,
+                        APP_SLOGAN,
                         style: TextStyle(
                             fontSize: 13, color: Colors.white.withOpacity(0.8)),
                       )
@@ -204,7 +202,6 @@ class _NavDrawerState extends State<NavDrawer> {
                     () => this.selectedMenuItem = this.widget.menuTitles[4]);
                 this._saveState(this.widget.menuTitles[4]);
                 this.widget.onMenuItemClicked(this.widget.menuTitles[4]);
-                Navigator.of(context).pop();
               },
             ),
           ],

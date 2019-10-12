@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sportega/env.dart';
 import 'package:sportega/ui/layouts/home_app_bar.dart';
 import 'package:sportega/ui/layouts/bottom_nav.dart';
 import 'package:sportega/ui/layouts/nav_drawer.dart';
@@ -80,10 +81,19 @@ class _HomePageState extends State {
         this.setState(() => this._selectedTabIndex = 3);
         break;
       case 'About':
-        // display about us dialog box
+        showAboutDialog(
+          context: this.context,
+          applicationIcon: CircleAvatar(
+            radius: 60,
+            backgroundImage: AssetImage(APP_LOGO),
+          ),
+          applicationName: APP_NAME,
+          applicationVersion: APP_VERSION,
+          children: <Widget>[Text(APP_DESCRIPTION)],
+        );
         break;
       default:
-        this.setState(() => this._selectedTabIndex = 0);
+        this.setState(() => this._selectedTabIndex = 3);
     }
   }
 }

@@ -37,7 +37,7 @@ void main() {
 
     test('Check newly inserted News', () async {
       List<News> newsList = await newsModel.getAllNews();
-      print(newsList[newsList.length - 1]);
+      print(newsList[0]);
     });
 
     test('Delete All News Test', () async {

@@ -7,7 +7,7 @@ abstract class NewsDao {
   @insert
   Future<void> insertNews(NewsEntity newsEntity);
 
-  @Query('SELECT * FROM NewsEntity')
+  @Query('SELECT * FROM NewsEntity ORDER BY id DESC')
   Future<List<NewsEntity>> getAllNews();
 
   @Query('DELETE FROM NewsEntity')

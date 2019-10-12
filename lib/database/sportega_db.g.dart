@@ -128,7 +128,7 @@ class _$NewsDao extends NewsDao {
 
   @override
   Future<List<NewsEntity>> getAllNews() async {
-    return _queryAdapter.queryList('SELECT * FROM NewsEntity',
+    return _queryAdapter.queryList('SELECT * FROM NewsEntity ORDER BY id DESC',
         mapper: _newsEntityMapper);
   }
 

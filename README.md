@@ -6,9 +6,9 @@ News Tab            |  Videos Tab
 :-------------------------:|:-------------------------:
 ![News Tab](https://github.com/codingoliver/sportega/blob/master/screenshots/news_tab.png) | ![Video Tab](https://github.com/codingoliver/sportega/blob/master/screenshots/video_tab.png) 
 
-Photos Tab            |  Favorite News Tab
+Photos Tab            |  Navigation Drawer
 :-------------------------:|:-------------------------:
-![News Tab](https://github.com/codingoliver/sportega/blob/master/screenshots/photo_tab.png) | ![Video Tab](https://github.com/codingoliver/sportega/blob/master/screenshots/favorite_tab.png) 
+![News Tab](https://github.com/codingoliver/sportega/blob/master/screenshots/photo_tab.png) | ![Navigation Drawer](https://github.com/codingoliver/sportega/blob/master/screenshots/nav_drawer.png) 
 
 News Item Detail Page            |  Video Page
 :-------------------------:|:-------------------------:

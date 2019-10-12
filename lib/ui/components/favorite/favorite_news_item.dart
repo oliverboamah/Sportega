@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sportega/ui/holders/news.dart';
 import 'package:sportega/values/colors/colors.dart';
@@ -28,8 +29,8 @@ class _FavoriteNewsItemState extends State<FavoriteNewsItem> {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                this.widget.news.image,
+              child: CachedNetworkImage(
+                imageUrl: this.widget.news.image,
                 width: 70,
                 height: 80,
                 fit: BoxFit.cover,

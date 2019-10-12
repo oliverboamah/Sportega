@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sportega/ui/components/news/news_heading.dart';
@@ -34,8 +35,8 @@ class _NewsPageState extends State<NewsPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0),
-                    child: Image.network(
-                      this.widget.news.image,
+                    child: CachedNetworkImage(
+                      imageUrl: this.widget.news.image,
                       height: 250,
                       width: MediaQuery.of(context).size.width,
                       fit: BoxFit.fitWidth,

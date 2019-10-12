@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sportega/env.dart';
 import 'package:sportega/ui/routes/routes.dart';
 
 class SplashPage extends StatefulWidget {
@@ -22,7 +22,7 @@ class _SplashState extends State<SplashPage> {
           child: Container(
               width: 200,
               height: 200,
-              child: Image.asset('assets/images/logo.png')),
+              child: Image.asset(APP_LOGO)),
         ));
   }
 }

@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sportega/env.dart';
+import 'package:sportega/ui/layouts/about_dialog.dart';
 import 'package:sportega/ui/layouts/home_app_bar.dart';
 import 'package:sportega/ui/layouts/bottom_nav.dart';
 import 'package:sportega/ui/layouts/nav_drawer.dart';
@@ -21,7 +20,7 @@ class _HomePageState extends State {
   // tabs
   List<Widget> _tabs = [];
 
-  // page storage bucket
+  // page storage bucket to help store state of tabs
   final pageStorageBucket = PageStorageBucket();
 
   @override
@@ -33,16 +32,14 @@ class _HomePageState extends State {
   void _initializeTabs() {
     this._tabs = [
       NewsTab(
-        key: PageStorageKey('NewsTab'),
-        onGoToFavoriteButtonClicked: () =>
-            this.setState(() => this._selectedTabIndex = 3),
-      ),
+          key: PageStorageKey('NewsTab'),
+          onGoToFavoriteButtonClicked: this._selectFavoriteTab()),
       VideoTab(
-        key: PageStorageKey('VideoTab'),
-      ),
+          key: PageStorageKey('VideoTab'),
+          onGoToFavoriteButtonClicked: this._selectFavoriteTab()),
       PhotoTab(
-        key: PageStorageKey('PhotoTab'),
-      ),
+          key: PageStorageKey('PhotoTab'),
+          onGoToFavoriteButtonClicked: this._selectFavoriteTab()),
       FavouriteTab()
     ];
   }
@@ -66,7 +63,6 @@ class _HomePageState extends State {
   }
 
   void _onDrawerMenuItemClicked(String title) {
-    print('Title : ' + title);
     switch (title) {
       case 'News':
         this.setState(() => this._selectedTabIndex = 0);
@@ -81,19 +77,14 @@ class _HomePageState extends State {
         this.setState(() => this._selectedTabIndex = 3);
         break;
       case 'About':
-        showAboutDialog(
-          context: this.context,
-          applicationIcon: CircleAvatar(
-            radius: 60,
-            backgroundImage: AssetImage(APP_LOGO),
-          ),
-          applicationName: APP_NAME,
-          applicationVersion: APP_VERSION,
-          children: <Widget>[Text(APP_DESCRIPTION)],
-        );
+        showAboutAppDialog(this.context);
         break;
       default:
         this.setState(() => this._selectedTabIndex = 3);
     }
+  }
+
+  _selectFavoriteTab() {
+    this.setState(() => this._selectedTabIndex = 3);
   }
 }

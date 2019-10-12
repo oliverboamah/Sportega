@@ -17,8 +17,8 @@ class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:
-            VideoAppBar(title: this.widget.video.title).getVideoAppBar(context),
+        appBar: VideoAppBar(context: context, title: this.widget.video.title)
+            .getVideoAppBar(),
         body: Column(
           children: <Widget>[
             YoutubePlayer(

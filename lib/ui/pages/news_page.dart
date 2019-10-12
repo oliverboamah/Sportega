@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sportega/ui/components/news/news_heading.dart';
 import 'package:sportega/ui/holders/news.dart';
@@ -20,8 +19,9 @@ class _NewsPageState extends State<NewsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: NewsAppBar(
+                context: context,
                 onSendIconClicked: () => Sharing.shareNews(this.widget.news))
-            .getNewsAppBar(context),
+            .getNewsAppBar(),
         body: ListView(
           children: <Widget>[
             Container(

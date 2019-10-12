@@ -5,6 +5,8 @@ import 'package:sportega/env.dart';
 import 'package:sportega/values/colors/colors.dart';
 
 class NavDrawer extends StatefulWidget {
+  final Function onMenuItemClicked;
+
   final List<String> menuTitles = [
     'News',
     'Video',
@@ -23,7 +25,8 @@ class NavDrawer extends StatefulWidget {
   final menuItemColor = Color(PRIMARY_TEXT_COLOR);
   final selectedMenuItemColor = Color(PRIMARY_COLOR);
 
-  final Function onMenuItemClicked;
+  // key to store and retrieve selectedMenuItem in shared prefs
+  final selectedMenuItemKey = '@key:selectedMenuItem';
 
   NavDrawer({@required this.onMenuItemClicked});
 
@@ -94,7 +97,6 @@ class _NavDrawerState extends State<NavDrawer> {
               ),
             ),
             ListTile(
-              key: PageStorageKey('ListTile1'),
               title: Text(
                 this.widget.menuTitles[0],
                 style: TextStyle(
@@ -213,7 +215,7 @@ class _NavDrawerState extends State<NavDrawer> {
   // save selectedMenuItem state
   void _saveState(String selectedMenuItem) {
     SharedPreferences.getInstance().then((prefs) {
-      prefs.setString('selectedMenuItem', selectedMenuItem);
+      prefs.setString(this.widget.selectedMenuItemKey, selectedMenuItem);
     }).catchError((onError) {
       print(onError);
     });
@@ -222,7 +224,7 @@ class _NavDrawerState extends State<NavDrawer> {
   // load selectedMenuItem state
   void _loadState() {
     SharedPreferences.getInstance().then((prefs) {
-      final value = prefs.getString('selectedMenuItem');
+      final value = prefs.getString(this.widget.selectedMenuItemKey);
       if (value != null) {
         this.setState(() => this.selectedMenuItem = value);
       }

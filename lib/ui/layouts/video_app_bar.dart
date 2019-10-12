@@ -1,21 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sportega/values/colors/colors.dart';
 
 class VideoAppBar {
+  BuildContext context;
   final String title;
 
-  VideoAppBar({@required this.title});
+  VideoAppBar({@required this.context, @required this.title});
 
-  AppBar getVideoAppBar(BuildContext context) {
+  AppBar getVideoAppBar() {
     return AppBar(
       leading: new IconButton(
         icon: new Icon(CupertinoIcons.back, color: Colors.white),
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () => Navigator.of(this.context).pop(),
       ),
       title: Text(this.title),
       centerTitle: true,
-      backgroundColor: Color(PRIMARY_COLOR),
     );
   }
 }

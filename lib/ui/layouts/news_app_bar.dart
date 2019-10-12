@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:sportega/values/colors/colors.dart';
 
 class NewsAppBar {
+  final BuildContext context;
   final Function onSendIconClicked;
 
-  NewsAppBar({this.onSendIconClicked});
+  NewsAppBar({@required this.context, this.onSendIconClicked});
 
-  AppBar getNewsAppBar(BuildContext context) {
+  AppBar getNewsAppBar() {
     return AppBar(
       leading: new IconButton(
         icon: new Icon(CupertinoIcons.back, color: Colors.white),
-        onPressed: () => Navigator.of(context).pop(),
-    
+        onPressed: () => Navigator.of(this.context).pop(),
       ),
       title: Text(
         'Back',

@@ -17,23 +17,17 @@ class Routes {
   }
 
   void navigateToNewsPage(BuildContext context, News news) {
-    Future(() {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => NewsPage(news: news)));
-    });
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => NewsPage(news: news)));
   }
 
   void navigateToVideoPage(BuildContext context, Video video) {
-    Future(() {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => VideoPage(video: video)));
-    });
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => VideoPage(video: video)));
   }
 
   void navigateToPhotoPage(BuildContext context, Photo photo) {
-    Future(() {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => PhotoPage(photo: photo)));
-    });
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => PhotoPage(photo: photo)));
   }
 }

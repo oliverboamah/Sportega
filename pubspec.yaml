@@ -41,6 +41,9 @@ dependencies:
 
   # share content from app
   share:
+
+  # cache network image for offline use
+  cached_network_image:
     
 dev_dependencies:
   flutter_test:

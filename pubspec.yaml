@@ -38,6 +38,9 @@ dependencies:
   flushbar: ^1.9.0
 
   shared_preferences:
+
+  # share content from app
+  share:
     
 dev_dependencies:
   flutter_test:

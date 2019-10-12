@@ -15,11 +15,13 @@ import 'package:sportega/ui/components/text_header.dart';
 import 'package:sportega/ui/constants/load_data_status.dart';
 import 'package:sportega/ui/holders/news.dart';
 import 'package:sportega/ui/routes/routes.dart';
+import 'package:sportega/util/sharing.dart';
 
 class NewsTab extends StatefulWidget {
   final Function onGoToFavoriteButtonClicked;
 
-  NewsTab({@required Key key, this.onGoToFavoriteButtonClicked}) : super(key: key);
+  NewsTab({@required Key key, this.onGoToFavoriteButtonClicked})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _NewsTabState();
@@ -113,6 +115,8 @@ class _NewsTabState extends State<NewsTab> {
               Routes().navigateToNewsPage(context, this.newsList[position + 4]),
           onNewsItemFavoriteIconSelected: (position) =>
               this.saveNews(this.newsList[position + 4]),
+          onNewsItemShareIconClicked: (position) =>
+              Sharing.shareNews(this.newsList[position + 4]),
         )
       ],
     );

@@ -31,12 +31,12 @@ Share News            |  Save Favorite News
 * Flutter 1.9.1
 
 ## Third Party Packages
-[cached_network_image](https://pub.dev/packages/cached_network_image) cache images for offline use
-[cupertino_icons](https://pub.dev/packages/cupertino_icons) beautiful ios icons
-[floor](https://pub.dev/packages/floor) local database using ORM style
-[flushbar](https://pub.dev/packages/flushbar) pretty custom snackbars
-[http](https://pub.dev/packages/http) perform api requests
-[photo_view](https://pub.dev/packages/photo_view) zoomable image
-[share](https://pub.dev/packages/share) share content to other apps
-[shared_preferences](https://pub.dev/packages/shared_preferences) simple local storage
-[youtube_player_flutter](https://pub.dev/packages/youtube_player_flutter) play youtube videos in app
+* [cached_network_image](https://pub.dev/packages/cached_network_image) cache images for offline use
+* [cupertino_icons](https://pub.dev/packages/cupertino_icons) beautiful ios icons
+* [floor](https://pub.dev/packages/floor) local database using ORM style
+* [flushbar](https://pub.dev/packages/flushbar) pretty custom snackbars
+* [http](https://pub.dev/packages/http) perform api requests
+* [photo_view](https://pub.dev/packages/photo_view) zoomable image
+* [share](https://pub.dev/packages/share) share content to other apps
+* [shared_preferences](https://pub.dev/packages/shared_preferences) simple local storage
+* [youtube_player_flutter](https://pub.dev/packages/youtube_player_flutter) play youtube videos in app

@@ -26,6 +26,23 @@ Share News            |  Save Favorite News
 * Save favorite sports news
 * Read favorite sports news when offline
 
+## Getting Started
+* Clone the project (https://github.com/codingoliver/Sportega.git)
+* Install all dependences by running ```flutter pub get``` in terminal
+* Get Google API Key (https://developers.google.com/youtube/v3/getting-started)
+* Get News API Key (https://newsapi.org)
+* In lib/env.dart, Enter your Google API Key and News API Key like below:
+   
+    ```
+    // snews api key
+    const NEWS_API_KEY = '*******';
+
+    // google api key
+    const GOOGLE_API_KEY = '*******';
+    ```
+
+ * Have Fun!   
+
 ## Technologies
 * Dart 2.5.0
 * Flutter 1.9.1

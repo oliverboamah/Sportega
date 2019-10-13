@@ -34,7 +34,7 @@ Share News            |  Save Favorite News
 * In lib/env.dart, Enter your Google API Key and News API Key like below:
    
     ```
-    // snews api key
+    // news api key
     const NEWS_API_KEY = '*******';
 
     // google api key
